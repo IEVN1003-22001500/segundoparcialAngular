@@ -1,0 +1,124 @@
+/* Fondo general */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: #f7ead7;
+  color: #2b2118;
+}
+
+/* Título */
+h1 {
+  text-align: center;
+  color: #d35400;
+  margin-bottom: 30px;
+  font-size: 32px;
+  border-bottom: 3px solid #e67e22;
+  padding-bottom: 15px;
+}
+
+/* Contenedor principal */
+div {
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+/* Formulario */
+div:first-of-type {
+  background: #fff8ed;
+  padding: 30px;
+  border-radius: 12px;
+  border: 2px solid #e67e22;
+  box-shadow: 0 5px 15px rgba(100, 50, 10, 0.2);
+}
+
+/* Etiquetas */
+label {
+  display: inline-block;
+  width: 70px;
+  font-weight: bold;
+  color: #8b3e00;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="number"] {
+  width: 250px;
+  padding: 9px;
+  border: 2px solid #e6a15c;
+  border-radius: 6px;
+  background: #fffdf9;
+  font-size: 15px;
+  outline: none;
+}
+
+/* Cuando seleccionamos un input */
+input[type="text"]:focus,
+input[type="number"]:focus {
+  border-color: #d35400;
+  box-shadow: 0 0 5px rgba(211, 84, 0, 0.3);
+}
+
+/* Radios */
+input[type="radio"] {
+  accent-color: #d35400;
+  margin-left: 10px;
+}
+
+/* Botón */
+button {
+  display: block;
+  margin: 25px auto 0;
+  padding: 12px 35px;
+  background: #e67e22;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Efecto del botón */
+button:hover {
+  background: #c44f00;
+}
+
+/* Línea */
+hr {
+  max-width: 500px;
+  border: none;
+  border-top: 2px solid #e67e22;
+  margin: 35px auto;
+}
+
+/* Información */
+div:last-of-type {
+  background: #fff8ed;
+  padding: 25px;
+  border-radius: 12px;
+  border-left: 6px solid #d35400;
+  box-shadow: 0 5px 15px rgba(100, 50, 10, 0.2);
+}
+
+/* Título de información */
+h2 {
+  color: #d35400;
+  text-align: center;
+}
+
+/* Datos */
+p {
+  font-size: 17px;
+  margin: 12px 0;
+}
+
+/* Imagen del signo */
+img {
+  display: block;
+  margin: 20px auto 0;
+  border-radius: 10px;
+  border: 3px solid #e67e22;
+  padding: 5px;
+  background: #fff;
+}

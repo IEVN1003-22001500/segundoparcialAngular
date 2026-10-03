@@ -1,0 +1,55 @@
+<h1>Formulario de datos personales</h1>
+
+<div>
+
+  <label>Nombre:</label>
+  <input type="text" [(ngModel)]="nombre">
+
+  <br><br>
+
+  <label>Día:</label>
+  <input type="number" [(ngModel)]="dia">
+
+  <br><br>
+
+  <label>Mes:</label>
+  <input type="number" [(ngModel)]="mes">
+
+  <br><br>
+
+  <label>Año:</label>
+  <input type="number" [(ngModel)]="anio">
+
+  <br><br>
+
+  <label>Sexo:</label>
+
+  <input type="radio" name="sexo" value="Masculino" [(ngModel)]="sexo">
+  Masculino
+
+  <input type="radio" name="sexo" value="Femenino" [(ngModel)]="sexo">
+  Femenino
+
+  <br><br>
+
+  <button (click)="imprimir()">Imprimir</button>
+
+</div>
+
+<hr>
+
+<div *ngIf="edad > 0">
+
+  <h2>Información</h2>
+
+  <p>Nombre: {{nombre}}</p>
+
+  <p>Sexo: {{sexo}}</p>
+
+  <p>Edad: {{edad}} años</p>
+
+  <p>Signo zodiacal: {{signo}}</p>
+
+  <img [src]="imagen" width="150">
+
+</div>
