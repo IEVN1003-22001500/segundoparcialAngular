@@ -4,6 +4,7 @@ import { initFlowbite } from 'flowbite';
 import { Zodiaco } from './formulario/zodiaco/zodiaco';
 import { Navbar } from './navbar/navbar';
 import { Distancia } from './formulario/distancia/distancia';
+import { Cinepolis } from './escuela/cinepolis/cinepolis';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
