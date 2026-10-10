@@ -1,30 +1,193 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form class="max-w-sm mx-auto space-y-4">
-    <div>
-        <label for="visitors" class="block mb-2.5 text-sm font-medium text-heading">Small Input</label>
-        <input type="text" id="visitors" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-2.5 py-2 shadow-xs placeholder:text-body" placeholder="" required />
-    </div>
-    <div>
-        <label for="visitors" class="block mb-2.5 text-sm font-medium text-heading">Base Input</label>
-        <input type="text" id="visitors" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" placeholder="" required />
-    </div>
-    <div>
-        <label for="visitors" class="block mb-2.5 text-sm font-medium text-heading">Large Input</label>
-        <input type="text" id="visitors" class="bg-neutral-secondary-medium border border-default-medium text-heading text-base rounded-base focus:ring-brand focus:border-brand block w-full px-3.5 py-3 shadow-xs placeholder:text-body" placeholder="" required />
-    </div>
-    <div>
-        <label for="visitors" class="block mb-2.5 text-sm font-medium text-heading">Extra Large Input</label>
-        <input type="text" id="visitors" class="bg-neutral-secondary-medium border border-default-medium text-heading text-base rounded-base focus:ring-brand focus:border-brand block w-full px-4 py-3.5 shadow-xs placeholder:text-body" placeholder="" required />
-    </div>
-</form>
 
-</body>
-</html>
+<div class="min-h-screen bg-gradient-to-r from-blue-400 to-blue-900 px-4 pt-24 pb-10 text-white">
 
+
+
+
+
+
+  <div class="mx-auto max-w-4xl">
+
+   
+    <h1   class="mb-8 text-center text-4xl font-bold italic text-yellow-400">
+      Cinépolis
+    </h1>
+
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+
+      
+      <fieldset class="rounded-lg border border-white p-5">
+        <legend class="px-3 text-xl font-bold">Entradas</legend>
+
+        <form (ngSubmit)="procesar()" #formulario="ngForm"
+              class="space-y-4">
+
+          
+          <div>
+            <label for="nombre"
+                   class="mb-2 block text-sm font-medium">
+              Nombre
+            </label>
+
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              [(ngModel)]="nombre"
+              class="block w-full rounded-lg border border-gray-300
+                     bg-white px-3 py-2 text-gray-900"
+              placeholder="Nombre del comprador"
+              required>
+          </div>
+
+          
+          <div>
+            <label for="compradores"
+                   class="mb-2 block text-sm font-medium">
+              Cantidad de compradores
+            </label>
+
+            <input
+              type="number"
+              id="compradores"
+              name="compradores"
+              [(ngModel)]="compradores"
+              min="1"
+              step="1"
+              class="block w-full rounded-lg border border-gray-300
+                     bg-white px-3 py-2 text-gray-900"
+              required>
+          </div>
+
+          
+          <div>
+            <span class="mb-2 block text-sm font-medium">
+              Tarjeta Cinéco
+            </span>
+
+            <div class="flex items-center gap-6">
+
+              <label class="flex items-center gap-2">
+                <input
+                  type="radio"
+                  name="tarjeta"
+                  [value]="true"
+                  [(ngModel)]="tarjeta"
+                  class="h-4 w-4 accent-yellow-400">
+                Sí
+              </label>
+
+              <label class="flex items-center gap-2">
+                <input
+                  type="radio"
+                  name="tarjeta"
+                  [value]="false"
+                  [(ngModel)]="tarjeta"
+                  class="h-4 w-4 accent-yellow-400">
+                No
+              </label>
+
+            </div>
+          </div>
+
+          
+          <div>
+            <label for="boletos"
+                   class="mb-2 block text-sm font-medium">
+              Cantidad de boletos
+            </label>
+
+            <input
+              type="number"
+              id="boletos"
+              name="boletos"
+              [(ngModel)]="boletos"
+              min="1"
+              [max]="compradores * 7"
+              step="1"
+              class="block w-full rounded-lg border border-gray-300
+                     bg-white px-3 py-2 text-gray-900"
+              required>
+          </div>
+
+          
+          <p *ngIf="error"
+             class="rounded-lg bg-red-100 p-3 text-sm text-red-800">
+            {{ error }}
+          </p>
+
+          
+          <div class="flex flex-wrap gap-3 pt-3">
+
+            <!-- <button
+              type="submit"
+              class="rounded-lg bg-yellow-400 px-5 py-2
+                     font-semibold text-blue-950 hover:bg-yellow-300">
+              Procesar
+            </button> -->
+
+
+            <button type="submit" class="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-base text-sm px-4 py-2.5 text-center leading-5">Procesar</button>
+
+
+            <button type="button"  (click)="limpiar()" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-base text-sm px-4 py-2.5 text-center leading-5">Salir</button>
+
+
+          </div>
+
+        </form>
+      </fieldset>
+
+     
+      <fieldset class="self-start rounded-lg border border-white p-5">
+        <legend class="px-3 text-xl font-bold">Salidas</legend>
+
+        <label for="total"
+               class="mb-2 block text-sm font-medium">
+          Valor a pagar
+        </label>
+
+        <input
+          type="text"
+          id="total"
+          [value]="total | currency:'MXN':'symbol':'1.2-2'"
+          readonly
+          class="block w-full rounded-lg border border-gray-300
+                 bg-gray-100 px-3 py-2 text-lg font-bold text-gray-900">
+
+        <div *ngIf="procesado" class="mt-5 space-y-2 text-sm">
+
+          <p>
+            <strong>Comprador:</strong> {{ nombre }}
+          </p>
+
+          <p>
+            <strong>Boletos:</strong> {{ boletos }}
+          </p>
+
+          <p>
+            <strong>Máximo permitido:</strong>
+            {{ compradores * 7 }} boletos
+          </p>
+
+          <p>
+            <strong>Importe sin descuentos:</strong>
+            {{ subtotal | currency:'MXN':'symbol':'1.2-2' }}
+          </p>
+
+          <p>
+            <strong>Descuento por boletos:</strong>
+            {{ descuentoBoletos | currency:'MXN':'symbol':'1.2-2' }}
+          </p>
+
+          <p>
+            <strong>Descuento Cinéco:</strong>
+            {{ descuentoTarjeta | currency:'MXN':'symbol':'1.2-2' }}
+          </p>
+
+        </div>
+      </fieldset>
+
+    </div>
+  </div>
+</div>

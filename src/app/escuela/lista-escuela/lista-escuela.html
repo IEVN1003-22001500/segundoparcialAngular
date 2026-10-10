@@ -1,16 +1,19 @@
+```html
 <div class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow">
 
   <h1 class="text-3xl font-bold text-gray-900 mb-6">
     Lista Alumnos
   </h1>
 
+  <!-- Formulario -->
   <form [formGroup]="formulario">
 
-    <!-- Matricula -->
+    <!-- Matrícula -->
     <div class="mb-5">
       <label for="matricula" class="block mb-2 text-sm font-medium text-gray-900">
-        Matricula
+        Matrícula
       </label>
+
       <input
         type="text"
         id="matricula"
@@ -18,7 +21,7 @@
         formControlName="matricula"
         required
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-        placeholder="Matricula"
+        placeholder="Matrícula"
       >
     </div>
 
@@ -27,6 +30,7 @@
       <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900">
         Nombre
       </label>
+
       <input
         type="text"
         id="nombre"
@@ -43,14 +47,15 @@
       <label for="correo" class="block mb-2 text-sm font-medium text-gray-900">
         Correo
       </label>
+
       <input
-        type="text"
+        type="email"
         id="correo"
         name="correo"
         formControlName="correo"
         required
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-        placeholder="Correo"
+        placeholder="Correo electrónico"
       >
     </div>
 
@@ -59,6 +64,7 @@
       <label for="materia" class="block mb-2 text-sm font-medium text-gray-900">
         Materia
       </label>
+
       <input
         type="text"
         id="materia"
@@ -72,8 +78,9 @@
 
     <!-- Botones -->
     <div class="flex justify-end gap-3 mt-5">
+
       <button
-        type="submit"
+        type="button"
         (click)="muestraAlumno()"
         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 disabled:opacity-50 disabled:cursor-not-allowed"
       >
@@ -82,21 +89,124 @@
 
       <button
         type="button"
-        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 disabled:opacity-50 disabled:cursor-not-allowed"
+        (click)="cargarAlumnos()"
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5"
       >
         Cargar
       </button>
+
     </div>
 
   </form>
 
-  <h2 class="text-3xl font-bold text-gray-900 mb-6">
-    Lista Alumnos
-  </h2>
+  <!-- Tabla de alumnos -->
+  <div class="w-full mt-8">
 
-  <h3>Matricula:{{nuevoAlumno.matricula}}</h3>
-  <h3>Nombre:{{nuevoAlumno.nombre}}</h3>
-  <h3>Correo:{{nuevoAlumno.correo}}</h3>
-  <h3>Materia:{{nuevoAlumno.materia}}</h3>
+    <h2 class="mb-4 text-2xl font-bold text-gray-900">
+      Lista de alumnos
+    </h2>
+
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+
+      <table class="w-full text-sm text-left text-gray-500">
+
+        <!-- Encabezado -->
+        <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+
+          <tr>
+            <th scope="col" class="px-6 py-3">
+              Matrícula
+            </th>
+
+            <th scope="col" class="px-6 py-3">
+              Nombre
+            </th>
+
+            <th scope="col" class="px-6 py-3">
+              Correo
+            </th>
+
+            <th scope="col" class="px-6 py-3">
+              Materia
+            </th>
+
+            <th scope="col" class="px-6 py-3">
+              Acciones
+            </th>
+          </tr>
+
+        </thead>
+
+        <!-- Datos de los alumnos -->
+        <tbody>
+
+          <tr
+            *ngFor="let alumno1 of alumnos; let i = index"
+            class="bg-white border-b border-gray-200 hover:bg-gray-50"
+          >
+
+            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+              {{ alumno1.matricula }}
+            </td>
+
+            <td class="px-6 py-4">
+              {{ alumno1.nombre }}
+            </td>
+
+            <td class="px-6 py-4">
+              {{ alumno1.correo }}
+            </td>
+
+            <td class="px-6 py-4">
+              {{ alumno1.materia }}
+            </td>
+
+            <!-- Acciones -->
+            <td class="px-6 py-4">
+
+              <div class="flex flex-wrap gap-2">
+
+                <!-- Editar -->
+                <button
+                  type="button"
+                  (click)="editarAlumno(i)"
+                  class="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300"
+                >
+                  Editar
+                </button>
+
+                <!-- Eliminar -->
+                <button
+                  type="button"
+                  (click)="eliminarAlumno(i)"
+                  class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300"
+                >
+                  Eliminar
+                </button>
+
+              </div>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <!-- Mensaje cuando no hay alumnos -->
+    <div
+      *ngIf="alumnos.length === 0"
+      class="p-4 mt-4 text-sm text-gray-800 rounded-lg bg-gray-100"
+      role="alert"
+    >
+      <span class="font-medium">Información:</span>
+      No hay alumnos registrados.
+    </div>
+
+  </div>
 
 </div>
+```

@@ -29,7 +29,7 @@ export const routes: Routes = [
   },
 
   {
-    path: 'escuela',
+    path: 'escuela/lista-escuela',
     loadComponent: () =>
       import('./escuela/lista-escuela/lista-escuela')
         .then(c => c.ListaEscuela)
