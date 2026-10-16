@@ -1,1 +1,218 @@
-<p>ventas works!</p>
+
+<div class="min-h-screen bg-gradient-to-r from-blue-400 to-blue-900 px-4 pt-24 pb-10 text-white">
+
+  <div class="mx-auto max-w-6xl">
+
+    <h1 class="mb-8 text-center text-4xl font-bold italic text-yellow-400">
+      Registro de ventas Cinépolis
+    </h1>
+
+    
+    <div class="mb-8 grid grid-cols-1 gap-4 md:grid-cols-3">
+
+      <div class="rounded-lg bg-white p-5 text-center text-gray-900 shadow-lg">
+        <h2 class="text-lg font-semibold">Total de ventas</h2>
+        <p class="mt-2 text-3xl font-bold">{{ ventas.length }}</p>
+      </div>
+
+      <div class="rounded-lg bg-white p-5 text-center text-gray-900 shadow-lg">
+        <h2 class="text-lg font-semibold">Boletos vendidos</h2>
+        <p class="mt-2 text-3xl font-bold">{{ totalBoletos }}</p>
+      </div>
+
+      <div class="rounded-lg bg-white p-5 text-center text-gray-900 shadow-lg">
+        <h2 class="text-lg font-semibold">Ingresos totales</h2>
+        <p class="mt-2 text-3xl font-bold">
+          {{ totalVentas | currency:'MXN':'symbol':'1.2-2' }}
+        </p>
+      </div>
+
+    </div>
+
+    
+    <div class="mb-6 flex flex-wrap justify-center gap-4">
+
+      <button
+        type="button"
+        (click)="cargarVentas()"
+        class="rounded-lg bg-white px-5 py-3 font-semibold text-blue-900 hover:bg-gray-200">
+        Actualizar
+      </button>
+
+      <button
+        type="button"
+        (click)="limpiarVentas()"
+        class="rounded-lg bg-red-600 px-5 py-3 font-semibold text-white hover:bg-red-700">
+        Borrar todas las ventas
+      </button>
+
+    </div>
+
+    
+    <div
+      *ngIf="indiceEdicion !== -1"
+      class="mx-auto mb-8 max-w-2xl rounded-lg bg-white p-6 text-gray-900 shadow-lg">
+
+      <h2 class="mb-5 text-center text-2xl font-bold text-blue-900">
+        Editar venta
+      </h2>
+
+      <form
+        [formGroup]="formulario"
+        (ngSubmit)="guardarEdicion()"
+        class="space-y-4">
+
+        <div>
+          <label class="mb-2 block font-medium">
+            Nombre del comprador
+          </label>
+
+          <input
+            type="text"
+            formControlName="nombre"
+            class="w-full rounded-lg border border-gray-300 p-2.5"
+            placeholder="Nombre del comprador">
+        </div>
+
+        <div>
+          <label class="mb-2 block font-medium">
+            Número de compradores
+          </label>
+
+          <input
+            type="number"
+            formControlName="compradores"
+            min="1"
+            class="w-full rounded-lg border border-gray-300 p-2.5">
+        </div>
+
+        <div>
+          <label class="mb-2 block font-medium">
+            Número de boletos
+          </label>
+
+          <input
+            type="number"
+            formControlName="boletos"
+            min="1"
+            class="w-full rounded-lg border border-gray-300 p-2.5">
+        </div>
+
+        <div>
+          <label class="flex items-center gap-2">
+            <input
+              type="checkbox"
+              formControlName="tarjeta"
+              class="h-4 w-4 rounded">
+            ¿Cuenta con tarjeta Cinéco?
+          </label>
+        </div>
+
+        <div class="flex flex-wrap gap-3">
+
+          <button
+            type="submit"
+            class="rounded-lg bg-blue-700 px-5 py-2.5 font-semibold text-white hover:bg-blue-800">
+            Guardar cambios
+          </button>
+
+          <button
+            type="button"
+            (click)="limpiarCampos()"
+            class="rounded-lg bg-gray-500 px-5 py-2.5 font-semibold text-white hover:bg-gray-600">
+            Limpiar campos
+          </button>
+
+        </div>
+
+      </form>
+    </div>
+
+    
+    <div class="overflow-x-auto rounded-lg shadow-lg">
+
+      <table class="w-full text-left text-sm text-gray-800">
+
+        <thead class="bg-yellow-400 text-xs uppercase text-gray-900">
+          <tr>
+            <th class="px-4 py-3">#</th>
+            <th class="px-4 py-3">Comprador</th>
+            <th class="px-4 py-3">Compradores</th>
+            <th class="px-4 py-3">Tarjeta Cinéco</th>
+            <th class="px-4 py-3">Boletos</th>
+            <th class="px-4 py-3">Subtotal</th>
+            <th class="px-4 py-3">Desc. boletos</th>
+            <th class="px-4 py-3">Desc. Cinéco</th>
+            <th class="px-4 py-3">Total</th>
+            <th class="px-4 py-3">Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr
+            *ngFor="let venta of ventas; let i = index"
+            class="border-b bg-white hover:bg-gray-100">
+
+            <td class="px-4 py-3">{{ i + 1 }}</td>
+            <td class="px-4 py-3">{{ venta.nombre }}</td>
+            <td class="px-4 py-3">{{ venta.compradores }}</td>
+            <td class="px-4 py-3">
+              {{ venta.tarjeta ? 'Sí' : 'No' }}
+            </td>
+            <td class="px-4 py-3">{{ venta.boletos }}</td>
+
+            <td class="px-4 py-3">
+              {{ venta.subtotal | currency:'MXN':'symbol':'1.2-2' }}
+            </td>
+
+            <td class="px-4 py-3">
+              {{ venta.descuentoBoletos | currency:'MXN':'symbol':'1.2-2' }}
+            </td>
+
+            <td class="px-4 py-3">
+              {{ venta.descuentoTarjeta | currency:'MXN':'symbol':'1.2-2' }}
+            </td>
+
+            <td class="px-4 py-3 font-bold">
+              {{ venta.total | currency:'MXN':'symbol':'1.2-2' }}
+            </td>
+
+            <td class="px-4 py-3">
+              <div class="flex flex-wrap gap-2">
+
+                <button
+                  type="button"
+                  (click)="editarVenta(i)"
+                  class="rounded-lg bg-yellow-400 px-3 py-2 font-semibold text-gray-900 hover:bg-yellow-500">
+                  Editar
+                </button>
+
+                <button
+                  type="button"
+                  (click)="eliminarVenta(i)"
+                  class="rounded-lg bg-red-600 px-3 py-2 font-semibold text-white hover:bg-red-700">
+                  Eliminar
+                </button>
+
+              </div>
+            </td>
+
+          </tr>
+
+          <tr *ngIf="ventas.length === 0">
+            <td
+              colspan="10"
+              class="bg-white px-4 py-8 text-center text-gray-500">
+              No hay ventas registradas.
+            </td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+</div>

@@ -20,6 +20,7 @@ export class ListaEscuela implements OnInit {
 
   formulario!: FormGroup;
   alumnos: IAlumno[] = [];
+  indiceEdicion:number=-1
 
   nuevoAlumno: IAlumno = {
     matricula: '',

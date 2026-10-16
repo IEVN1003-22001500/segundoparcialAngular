@@ -36,6 +36,13 @@ export const routes: Routes = [
   },
 
   {
+    path: 'escuela/ventas',
+    loadComponent: () =>
+      import('./escuela/ventas/ventas')
+        .then(c => c.Ventas)
+  },
+
+  {
     path: '',
     redirectTo: 'formulario/distancia',
     pathMatch: 'full'
@@ -47,3 +54,4 @@ export const routes: Routes = [
   }
 
 ];
+
