@@ -1,4 +1,3 @@
-
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
@@ -42,6 +41,30 @@ export const routes: Routes = [
         .then(c => c.Ventas)
   },
 
+  // RUTAS UTL
+  {
+    path: 'utl',
+    children: [
+
+      // ALUMNOS
+      {
+        path: 'alumnos',
+        loadComponent: () =>
+          import('./utl/ABCAlumnos/alumnos/alumnos')
+            .then(c => c.Alumnos)
+      },
+
+      // MAESTROS
+      {
+        path: 'maestros',
+        loadComponent: () =>
+          import('./utl/ABCMaestros/maestros/maestros')
+            .then(c => c.Maestros)
+      }
+
+    ]
+  },
+
   {
     path: '',
     redirectTo: 'formulario/distancia',
@@ -54,4 +77,3 @@ export const routes: Routes = [
   }
 
 ];
-
