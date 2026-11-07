@@ -1,1 +1,106 @@
-<p>editar works!</p>
+<div class="max-w-md mx-auto mt-10 overflow-hidden rounded-2xl border border-gray-700 bg-gray-900 shadow-2xl text-white">
+  
+  <!-- Encabezado -->
+  <div class="bg-gradient-to-r from-orange-600 via-orange-500 to-yellow-500 px-6 py-6 text-center">
+    <h2 class="text-2xl font-extrabold tracking-tight text-white">Editar Alumno</h2>
+    <p class="mt-1 text-sm text-orange-100">Modifica los datos del alumno seleccionado</p>
+  </div>
+
+  <!-- Formulario -->
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()" class="p-6 space-y-5">
+    
+    <!-- Matrícula (Deshabilitada/Solo lectura) -->
+    <div class="relative z-0 w-full mb-4 group">
+      <input
+        type="text"
+        id="matricula"
+        formControlName="matricula"
+        class="block py-2.5 px-0 w-full text-sm text-gray-400 bg-transparent border-0 border-b-2 border-gray-700 appearance-none focus:outline-none focus:ring-0 cursor-not-allowed"
+        placeholder=" "
+        readonly
+      />
+      <label for="matricula" class="absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0]">
+        Matrícula (No modificable)
+      </label>
+    </div>
+
+    <!-- Nombre -->
+    <div class="relative z-0 w-full mb-4 group">
+      <input
+        type="text"
+        id="nombre"
+        formControlName="nombre"
+        class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-600 appearance-none focus:border-orange-500 focus:outline-none peer"
+        placeholder=" "
+      />
+      <label for="nombre" class="absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:text-orange-400">
+        Nombre
+      </label>
+    </div>
+
+    <!-- Apellido Paterno -->
+    <div class="relative z-0 w-full mb-4 group">
+      <input
+        type="text"
+        id="apaterno"
+        formControlName="apaterno"
+        class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-600 appearance-none focus:border-orange-500 focus:outline-none peer"
+        placeholder=" "
+      />
+      <label for="apaterno" class="absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:text-orange-400">
+        Apellido Paterno
+      </label>
+    </div>
+
+    <!-- Apellido Materno -->
+    <div class="relative z-0 w-full mb-4 group">
+      <input
+        type="text"
+        id="amaterno"
+        formControlName="amaterno"
+        class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-600 appearance-none focus:border-orange-500 focus:outline-none peer"
+        placeholder=" "
+      />
+      <label for="amaterno" class="absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:text-orange-400">
+        Apellido Materno
+      </label>
+    </div>
+
+    <!-- Correo -->
+    <div class="relative z-0 w-full mb-6 group">
+      <input
+        type="email"
+        id="correo"
+        formControlName="correo"
+        class="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-600 appearance-none focus:border-orange-500 focus:outline-none peer"
+        placeholder=" "
+      />
+      <label for="correo" class="absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:text-orange-400">
+        Correo
+      </label>
+    </div>
+
+    <!-- Botones de Acción -->
+    <div class="flex items-center justify-between pt-2">
+      <button
+        type="submit"
+        class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center shadow-lg transition">
+        <svg class="w-3.5 h-3.5 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M17.414 2.586a2 2 0 0 0-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 0 0 0-2.828ZM5 5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6a1 1 0 1 0-2 0v6H5V7h6a1 1 0 1 0 0-2H5Z"/>
+        </svg>
+        Modificar
+      </button>
+
+      <button
+        type="button"
+        [routerLink]="['/utl/alumnos']"
+        class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center transition">
+        Cancelar
+        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+        </svg>
+      </button>
+    </div>
+
+  </form>
+</div>

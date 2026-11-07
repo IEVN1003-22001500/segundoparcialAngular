@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-
   {
     path: 'formulario',
     children: [
@@ -19,21 +18,18 @@ export const routes: Routes = [
       }
     ]
   },
-
   {
     path: 'escuela/cinepolis',
     loadComponent: () =>
       import('./escuela/cinepolis/cinepolis')
         .then(c => c.Cinepolis)
   },
-
   {
     path: 'escuela/lista-escuela',
     loadComponent: () =>
       import('./escuela/lista-escuela/lista-escuela')
         .then(c => c.ListaEscuela)
   },
-
   {
     path: 'escuela/ventas',
     loadComponent: () =>
@@ -41,11 +37,10 @@ export const routes: Routes = [
         .then(c => c.Ventas)
   },
 
-  // RUTAS UTL
+  // RUTAS UTL (Alumnos y Maestros)
   {
     path: 'utl',
     children: [
-
       // ALUMNOS
       {
         path: 'alumnos',
@@ -53,27 +48,59 @@ export const routes: Routes = [
           import('./utl/ABCAlumnos/alumnos/alumnos')
             .then(c => c.Alumnos)
       },
+      {
+        path: 'alumnos/agregar',
+        loadComponent: () =>
+          import('./utl/ABCAlumnos/agregar/agregar')
+            .then(c => c.Agregar)
+      },
+      {
+        path: 'alumnos/editar/:matricula', // <-- Aquí se agregó correctamente el parámetro
+        loadComponent: () =>
+          import('./utl/ABCAlumnos/editar/editar')
+            .then(c => c.Editar)
+      },
+      {
+        path: 'alumnos/eliminar/:matricula',
+        loadComponent: () =>
+          import('./utl/ABCAlumnos/eliminar/eliminar')
+            .then(c => c.Eliminar)
+      },
 
-      // MAESTROS
+      // MAESTROS (Lista principal)
       {
         path: 'maestros',
         loadComponent: () =>
           import('./utl/ABCMaestros/maestros/maestros')
             .then(c => c.Maestros)
+      },
+      {
+        path: 'maestros/agregar',
+        loadComponent: () =>
+          import('./utl/ABCMaestros/agregar/agregar')
+            .then(c => c.Agregar)
+      },
+      {
+        path: 'maestros/editar/:id',
+        loadComponent: () =>
+          import('./utl/ABCMaestros/editar/editar')
+            .then(c => c.Editar)
+      },
+      {
+        path: 'maestros/eliminar/:id',
+        loadComponent: () =>
+          import('./utl/ABCMaestros/eliminar/eliminar')
+            .then(c => c.Eliminar)
       }
-
     ]
   },
-
   {
     path: '',
     redirectTo: 'formulario/distancia',
     pathMatch: 'full'
   },
-
   {
     path: '**',
     redirectTo: 'formulario/distancia'
   }
-
 ];

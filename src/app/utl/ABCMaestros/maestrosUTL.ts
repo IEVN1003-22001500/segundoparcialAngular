@@ -1,5 +1,5 @@
 export interface Maestrosutl {
-  idmaestro: number;
+  idmaestro:number; // <-- Permite string y number
   nombre: string;
   apaterno: string;
   amaterno: string;
